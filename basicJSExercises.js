@@ -33,13 +33,14 @@ Output:
  --------------------------- */
 
  function areaTriangle(base, height) {
-   return "No code yet";
+
+   return 0.5 * base * height;
  }
  console.log("Triangle Area Calculator:");
  /* Uncomment the following to check */
-   // console.log(areaTriangle(2, 7));
-   // console.log(areaTriangle(20, 56.5));
-   // console.log(areaTriangle(50, 34));
+   console.log(areaTriangle(2, 7));
+   console.log(areaTriangle(20, 56.5));
+   console.log(areaTriangle(50, 34));
 
 
 /* ---------------------------
@@ -60,14 +61,18 @@ cat
 HINT: Use substring()
  --------------------------- */
 
-function rotate_string(text) {
-  console.log(text);
-}
+ function rotate_string(text) {
+   for (var i=0;i<text.length-1 ; i++)
+   {
+      text = text[text.length-1] + text.substring(0,text.length-1);
+   }
 
+   console.log(text);
+ }
 console.log("Rotate String:");
 /* Uncomment the following to check */
-  //rotate_string("cat");
-  //rotate_string("pseudonym")
+  rotate_string("cat");
+  rotate_string("pseudonym")
 
 
 /* ---------------------------
@@ -84,14 +89,19 @@ Output:
 HINT: Use split() and substring()
  --------------------------- */
 
-function protect_email(email) {
-  return "protected email";
-}
+ function protect_email(email) {
+   var temp = email.split('@');
+   var size = temp[0].length;
+   var temp3= email.substring(0,size/2);
+   var temp2 = email.substring(size,email.length);
+   temp = temp3 + '....' + temp2;
 
+   return temp;
+ }
 console.log("Protected email:");
 /* Uncomment the following to check */
-  //console.log(protect_email("harry_potter@gmail.com"));
-  //console.log(protect_email("sarah.connor@gmail.com"));
+  console.log(protect_email("harry_potter@gmail.com"));
+  console.log(protect_email("sarah.connor@gmail.com"));
 
 
 /* ---------------------------
@@ -108,14 +118,23 @@ Output:
 HINT: Use indexOf() and slice()
  --------------------------- */
 
-function remove_first_occurrence(text, searchstring) {
-  return "edited text";
-}
+ function remove_first_occurrence(text, searchstring) {
 
+
+     var pos = text.indexOf(searchstring);
+
+
+    {
+      var len= searchstring.length;
+      var editedtext= text.slice(pos);
+
+    }
+   return editedtext;
+ }
 console.log("Remove First Occurrence:");
 /* Uncomment the following to check */
-  //console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
-  //console.log(remove_first_occurrence("Drastic times call for drastic measures", 'drastic'));
+  console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
+  console.log(remove_first_occurrence("Drastic times call for drastic measures", 'drastic'));
 
 
 /* ---------------------------
@@ -131,16 +150,18 @@ bekoottx
 
 HINT: Use join(), split() and sort() functions
  --------------------------- */
-
-function alphabetic_order(word) {
-  return "rearranged word";
-}
+ function alphabetic_order(word) {
+   var splitting = word.split("");
+   var temp = splitting.sort();
+   var final = temp.join('');
+   return final;
+ }
 
 console.log("Alphabetic Order:");
 /* Uncomment the following to check */
-  // console.log(alphabetic_order("textbook"));
-  // console.log(alphabetic_order("webmaster"));
-  // console.log(alphabetic_order("supercalifragilisticexpialidocious"));
+   console.log(alphabetic_order("textbook"));
+   console.log(alphabetic_order("webmaster"));
+   console.log(alphabetic_order("supercalifragilisticexpialidocious"));
 
 
 /* ---------------------------
@@ -155,14 +176,47 @@ Output:
 c occurs 5 times
  --------------------------- */
 
-function most_frequent(arr) {
-  console.log("Most frequently occuring item in arr");
-}
+ function most_frequent(arr) {
+   console.log("Most frequently occuring item in arr");
 
+    var counter = 0, new_count, max_index, visit = [];
+
+    for(var i = 0; i < arr.length; i++)
+      visit.push(false);
+
+
+    for(var i = 0; i < arr.length; i++)
+    {
+
+      if(visit[i] == false)
+      {
+        new_count = 1; // first case we meet
+        visit[i] = true;
+
+        for(var j = i+1; j < arr.length; j++)
+        {
+
+          if(arr[j] === arr[i]) // notice this line
+          {
+            new_count++;  // increase upon match
+            visit[j] = true;
+          }
+        }
+
+        if(new_count > counter)
+        {
+          counter = new_count;
+          max_index = i;
+        }
+      }
+    }
+
+ console.log(arr[max_index] + " occurs " + counter + " times");
+ }
 console.log("Most Frequent Item:");
 /* Uncomment the following to check */
-  // most_frequent([3, 'c', 'c', 'c', 2, 3, 'c', 3, 'c', 2, 4, 9, 3]);
-  // most_frequent([7, 2, 'ax', '9', 9, 'ax', 'ax']);
+   most_frequent([3, 'c', 'c', 'c', 2, 3, 'c', 3, 'c', 2, 4, 9, 3]);
+   most_frequent([7, 2, 'ax', '9', 9, 'ax', 'ax']);
 
 
 /* ---------------------------
@@ -177,14 +231,22 @@ Output:
 [3, 'a', 2, 4, 9]
  --------------------------- */
 
-function remove_duplicates(arr) {
-  console.log("Duplicates removed from array");
-}
+ function remove_duplicates(arr) {
+   arr.sort();
+   for(j=0;j<5;j++){
+     for(i=0;i<arr.length;i++){
+       if(arr[i]==arr[i+1]){
+         arr.splice(i,1);
+       }
+     }
+   }
 
+   console.log(arr);
+ }
 console.log("Remove Duplicate Values:");
 /* Uncomment the following to check */
-  // remove_duplicates([3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]);
-  // remove_duplicates([4, 4, 4, 5, 's', 8, 's']);
+   remove_duplicates([3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]);
+   remove_duplicates([4, 4, 4, 5, 's', 8, 's']);
 
 
 /* ---------------------------
@@ -199,16 +261,29 @@ Output:
 "012-456-8-4"
  --------------------------- */
 
-function dash_in_even(number) {
-  console.log("even numbers separated by dashes");
-}
-
+ function dash_in_even(number) {
+   var arr= number.toString();
+   var final = "";
+   var temp1 = "";
+   var temp2 = "";
+   for(var i=0; i<=arr.length-1; i++)
+   {
+       temp1 = arr[i];
+       temp2 = arr[i+1];
+       final = final + temp1;
+       if(temp1%2==0 && temp2%2==0)
+       {
+         final = final + "-";
+       }
+   }
+   console.log(final);
+ }
 console.log("Dash between Even Numbers:");
 /* Uncomment the following to check */
-  // dash_in_even(100);
-  // dash_in_even(1356);
-  // dash_in_even(246824);
-  // dash_in_even(1324567824);
+   dash_in_even(100);
+   dash_in_even(1356);
+   dash_in_even(246824);
+   dash_in_even(1324567824);
 
 
 /* ---------------------------
@@ -221,13 +296,20 @@ the program will display a message "Good Work" otherwise display a message "Not 
 HINT: Use Math.ceil() and Math.random()
  --------------------------- */
 
-function guessing_game(guess) {
-  // Get a random integer from 1 to 10 inclusive
-  console.log("matched or unmatched?");
-}
-
+ function guessing_game(guess) {
+   // Get a random integer from 1 to 10 inclusive
+   var temp = Math.ceil((Math.random() * 10) + 1);;
+   if(temp==guess)
+   {
+       console.log("Suceess you have guessed it right!");
+   }
+   else {
+       console.log("Sorry you guessed it wrong");
+   }
+   //console.log(temp);
+ }
 console.log("Guessing Game:");
 /* Uncomment the following to check */
-  // var guess = prompt('Guess the number between 1 and 10 inclusive');
-  // console.log("User guessed: "+ guess);
-  // guessing_game(guess);
+   var guess = prompt('Guess the number between 1 and 10 inclusive');
+   console.log("User guessed: "+ guess);
+   guessing_game(guess);
